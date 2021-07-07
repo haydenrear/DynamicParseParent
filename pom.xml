@@ -15,6 +15,10 @@
     <description>Demo project for Spring Boot</description>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>DynamicParseBoot</module>
+        <module>DynamicParseStarter</module>
+    </modules>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -23,20 +27,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
             </plugin>
         </plugins>
     </build>
