@@ -13,6 +13,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>DynamicParseParent</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>DynamicParseStarter</module>
+        <module>DynamicParseBoot</module>
+    </modules>
+
     <properties>
         <java.version>11</java.version>
     </properties>
