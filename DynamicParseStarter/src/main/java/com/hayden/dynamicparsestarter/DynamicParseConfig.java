@@ -1,9 +1,11 @@
 package com.hayden.dynamicparsestarter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hayden.dynamicparse.decompile.Decompile;
 import com.hayden.dynamicparse.decompile.DecompilePrinter;
 import com.hayden.dynamicparse.decompile.LoadClass;
 import com.hayden.dynamicparse.parse.DynamicParseJson;
+import com.hayden.dynamicparse.parse.ReParse;
 import org.jd.core.v1.api.loader.Loader;
 import org.jd.core.v1.api.printer.Printer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -13,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ConditionalOnClass(DynamicParseJson.class)
 public class DynamicParseConfig {
 
     @Bean
@@ -22,12 +25,22 @@ public class DynamicParseConfig {
     }
 
     @Bean
-    DynamicParseJson dynamicParseJson(ObjectMapper mapper, DecompilePrinter printer, LoadClass loadClass){
+    DynamicParseJson dynamicParseJson(ObjectMapper mapper){
         return new DynamicParseJson(
-                mapper,
-                printer,
-                loadClass
+                mapper
         );
+    }
+
+    @Bean
+    Decompile decompile(DecompilePrinter printer, LoadClass loadClass)
+    {
+        return new Decompile(printer, loadClass);
+    }
+
+    @Bean
+    ReParse reParse()
+    {
+        return new ReParse();
     }
 
     @Bean

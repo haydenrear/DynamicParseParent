@@ -1,1 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.hayden.dynamicparsestarter.DynamicParseConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.hayden.dynamicparsestarter.DynamicParseConfig

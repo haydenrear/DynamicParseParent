@@ -2,8 +2,10 @@ package com.hayden.dynamicparsestarter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hayden.dynamicparse.decompile.Decompile;
 import com.hayden.dynamicparse.parse.DynamicParseJson;
 import com.hayden.dynamicparse.parse.DynamicParsingException;
+import com.hayden.dynamicparse.parse.ReParse;
 import javassist.CannotCompileException;
 import javassist.ClassPool;
 import javassist.NotFoundException;
@@ -26,12 +28,16 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes={DynamicParseJson.class, ObjectMapper.class})
+@SpringBootTest(classes={DynamicParseJson.class, ObjectMapper.class, ReParse.class, Decompile.class})
 @ExtendWith(SpringExtension.class)
 class DynamicParseStarterApplicationTests {
 
     @Autowired
     DynamicParseJson dynamicParseJson;
+    @Autowired
+    Decompile decompile;
+    @Autowired
+    ReParse reParse;
     @Autowired
     ObjectMapper om;
 
@@ -58,7 +64,7 @@ class DynamicParseStarterApplicationTests {
         var output= dynamicParseJson.dynamicParse(sb.toString(), "TestParsed", Optional.empty(), Optional.empty()).get();
         var val = om.readValue(sb.toString(), output.clzz().toClass());
 
-        List<Object> bids = dynamicParseJson.parseParsedByKey("bids", output, val);
+        List<Object> bids = reParse.parseParsedByKey("bids", output, val);
 
         System.out.println(bids);
 
