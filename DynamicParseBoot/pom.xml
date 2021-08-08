@@ -13,7 +13,6 @@
 	<version>1.1.0</version>
 	<name>DynamicParseBoot</name>
 	<description>Demo project for Spring Boot</description>
-	<packaging>pom</packaging>
 
 	<properties>
 		<java.version>11</java.version>
